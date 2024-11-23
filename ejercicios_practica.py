@@ -70,13 +70,19 @@ def fill():
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    # Crear tutores
-    Tutor1 = Tutor(name='Rosa')
-    Tutor2 = Tutor(name='Jose')
+    # Se crearán 5 tutores
+    Tutor1 = Tutor(name='Martina')
+    Tutor2 = Tutor(name='Esteban')
+    Tutor3 = Tutor(name='Francisco')
+    Tutor4 = Tutor(name='Lina')
+    Tutor5 = Tutor(name='Adriana')
 
     # Agregar tutores
     session.add(Tutor1)
     session.add(Tutor2)
+    session.add(Tutor3)
+    session.add(Tutor4)
+    session.add(Tutor5)
     session.commit()
     
     # Llenar la tabla de la secundaria con al menos 5 estudiantes
@@ -89,11 +95,13 @@ def fill():
 
      # Crear estudiantes
 
-    Estudiante1 = Estudiante(name='Marcos',age=34,grade=1,tutor_id=2)
-    Estudiante2 = Estudiante(name='Jose',age=22,grade=1,tutor_id=2)
-    Estudiante3 = Estudiante(name='Maria',age=32,grade=2,tutor_id=2)
-    Estudiante4 = Estudiante(name='Carolina',age=33,grade=1,tutor_id=1)
-    Estudiante5 = Estudiante(name='Juan',age=19,grade=2,tutor_id=2)
+    Estudiante1 = Estudiante(name='Marisa',age=13,grade=1,tutor_id=5)
+    Estudiante2 = Estudiante(name='Josefina',age=15,grade=3,tutor_id=1)
+    Estudiante3 = Estudiante(name='Eliana',age=15,grade=1,tutor_id=3)
+    Estudiante4 = Estudiante(name='Ignacio',age=17,grade=5,tutor_id=1)
+    Estudiante5 = Estudiante(name='Antonia',age=14,grade=2,tutor_id=4)
+    Estudiante6 = Estudiante(name='Viviana',age=16,grade=4,tutor_id=2)
+    
     
     # Agregar estudiantes
     session.add(Estudiante1)
@@ -101,6 +109,7 @@ def fill():
     session.add(Estudiante3)
     session.add(Estudiante4)
     session.add(Estudiante5)
+    session.add(Estudiante6)
     session.commit()
 
     # No olvidarse que antes de poder crear un estudiante debe haberse
@@ -108,7 +117,7 @@ def fill():
 
 
 def fetch():
-    print('Comprovemos su contenido, ¿qué hay en la tabla?')
+    print('Comprobemos su contenido, ¿qué hay en la tabla?')
     # Crear una query para imprimir en pantalla
     # todos los objetos creaods de la tabla estudiante.
     # Imprimir en pantalla cada objeto que traiga la query
@@ -192,11 +201,11 @@ if __name__ == '__main__':
     fill()
     fetch()
 
-    tutor = 'Rosa'
+    tutor = 'Martina'
     search_by_tutor(tutor)
 
-    nuevo_tutor = 'Rosa'
-    id = 3
+    nuevo_tutor = 'Francisco'
+    id = 1
     modify(id, nuevo_tutor)
 
     fetch()
