@@ -51,8 +51,6 @@ class Estudiante(base):
 
 
 def create_schema():
-    # Borrar todos las tablas existentes en la base de datos
-    # Esta linea puede comentarse sino se eliminar los datos
     base.metadata.drop_all(engine)
 
     # Crear las tablas
@@ -61,10 +59,6 @@ def create_schema():
 
 def fill():
     print('Completemos esta tablita!')
-    # Llenar la tabla de la secundaria con al munos 2 tutores
-    # Cada tutor tiene los campos:
-    # id --> este campo es auto incremental por lo que no deberá completarlo
-    # name --> El nombre del tutor (puede ser solo nombre sin apellido)
 
     # Crear la session
     Session = sessionmaker(bind=engine)
@@ -77,7 +71,6 @@ def fill():
     Tutor4 = Tutor(name='Lina')
     Tutor5 = Tutor(name='Adriana')
 
-    # Agregar tutores
     session.add(Tutor1)
     session.add(Tutor2)
     session.add(Tutor3)
@@ -85,16 +78,7 @@ def fill():
     session.add(Tutor5)
     session.commit()
     
-    # Llenar la tabla de la secundaria con al menos 5 estudiantes
-    # Cada estudiante tiene los posibles campos:
-    # id --> este campo es auto incremental por lo que no deberá completarlo
-    # name --> El nombre del estudiante (puede ser solo nombre sin apellido)
-    # age --> cuantos años tiene el estudiante
-    # grade --> en que año de la secundaria se encuentra (1-6)
-    # tutor --> el tutor de ese estudiante (el objeto creado antes)
-
-     # Crear estudiantes
-
+     # Se crearán 6 estudiantes
     Estudiante1 = Estudiante(name='Marisa',age=13,grade=1,tutor_id=5)
     Estudiante2 = Estudiante(name='Josefina',age=15,grade=3,tutor_id=1)
     Estudiante3 = Estudiante(name='Eliana',age=15,grade=1,tutor_id=3)
@@ -112,16 +96,9 @@ def fill():
     session.add(Estudiante6)
     session.commit()
 
-    # No olvidarse que antes de poder crear un estudiante debe haberse
-    # primero creado el tutor.
-
 
 def fetch():
     print('Comprobemos su contenido, ¿qué hay en la tabla?')
-    # Crear una query para imprimir en pantalla
-    # todos los objetos creaods de la tabla estudiante.
-    # Imprimir en pantalla cada objeto que traiga la query
-    # Realizar un bucle para imprimir de una fila a la vez
 
     Session = sessionmaker(bind=engine)
     session = Session()
@@ -134,13 +111,6 @@ def fetch():
 
 def search_by_tutor(tutor):
     print('Operación búsqueda!')
-    # Esta función recibe como parámetro el nombre de un posible tutor.
-    # Crear una query para imprimir en pantalla
-    # aquellos estudiantes que tengan asignado dicho tutor.
-
-    # Para poder realizar esta query debe usar join, ya que
-    # deberá crear la query para la tabla estudiante pero
-    # buscar por la propiedad de tutor.name
 
     Session = sessionmaker(bind=engine)
     session = Session()
@@ -152,16 +122,6 @@ def search_by_tutor(tutor):
 
 def modify(id, name):
     print('Modificando la tabla')
-    # Deberá actualizar el tutor de un estudiante, cambiarlo para eso debe
-    # 1) buscar con una query el tutor por "tutor.name" usando name
-    # pasado como parámetro y obtener el objeto del tutor
-    # 2) buscar con una query el estudiante por "estudiante.id" usando
-    # el id pasado como parámetro
-    # 3) actualizar el objeto de tutor del estudiante con el obtenido
-    # en el punto 1 y actualizar la base de datos
-
-    # TIP: En clase se hizo lo mismo para las nacionalidades con
-    # en la función update_persona_nationality
 
     Session = sessionmaker(bind=engine)
     session = Session()
